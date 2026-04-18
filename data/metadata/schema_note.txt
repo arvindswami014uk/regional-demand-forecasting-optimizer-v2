@@ -1,0 +1,1 @@
+Forecasting grain: sku-region-date. Optimization dimensions: warehouse, region, sku.
