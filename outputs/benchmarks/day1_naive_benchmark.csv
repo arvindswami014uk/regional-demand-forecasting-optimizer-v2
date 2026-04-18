@@ -1,0 +1,2 @@
+model_name,grain,rows_evaluated,wmape,wmape_pct,mae,rmse,bias
+naive_lag1_weekly,weekly_sku_region,0,,,,,
