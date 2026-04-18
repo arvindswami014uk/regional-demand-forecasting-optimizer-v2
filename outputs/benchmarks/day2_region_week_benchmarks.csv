@@ -1,0 +1,3 @@
+model_name,grain,rows_evaluated,wmape,wmape_pct,mae,rmse,bias,train_start_week,train_end_week,val_start_week,val_end_week,note
+lightgbm_region_week_v1,weekly_region,140,0.18312462310804503,18.31,325.8506463254331,694.9899623521404,160.07253451410952,2024-07-12 00:00:00,2025-08-15 00:00:00,2025-08-16 00:00:00,2025-12-05 00:00:00,Day 2 pivot to weekly region-level modeling due to one-observation-per-sku-region limitation
+naive_lag1_region_week,weekly_region,140,0.18157878891275114,18.16,323.1,425.318905562134,54.75714285714286,2024-07-12 00:00:00,2025-08-15 00:00:00,2025-08-16 00:00:00,2025-12-05 00:00:00,Validation-window naive lag-1 baseline

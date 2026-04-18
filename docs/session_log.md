@@ -104,3 +104,38 @@ Get the repo continuity system working cleanly at the start of a Colab session.
 - Add validation module
 - Start real utility module build-out
 - Begin LightGBM block
+
+## 2026-04-18 — Day 2
+### What I worked on
+- Diagnosed the weekly dataset at SKU-region grain
+- Confirmed each SKU-region pair had only one observation
+- Pivoted the forecasting approach to weekly region-level aggregation
+- Built time-based train/validation split
+- Trained a region-week LightGBM baseline
+- Compared LightGBM against a naive lag-1 region baseline
+- Saved predictions and benchmark outputs
+
+### What worked
+- Diagnosed the grain issue explicitly instead of forcing a broken SKU-level model
+- Region-week aggregation produced a valid forecasting dataset
+- LightGBM baseline ran successfully
+- Benchmarking and predictions were saved cleanly
+
+### What broke / blockers
+- Current dataset cannot support lag-based forecasting at SKU-region grain
+- Historical XGBoost benchmark still not revalidated on current V2 data
+- Inventory and uncertainty layers are still pending
+
+### Files touched
+- outputs/predictions/day2_region_week_lgbm_predictions.csv
+- outputs/benchmarks/day2_region_week_benchmarks.csv
+- docs/current_status.yaml
+- docs/session_log.md
+- reports/project_build_journal.md
+
+### Metrics / outputs
+- Region-week LightGBM validation WMAPE: 18.31%
+- Region-week naive validation WMAPE: 18.16%
+
+### Next step
+- Use the region-week forecast pipeline for Day 3 uncertainty + inventory linkage

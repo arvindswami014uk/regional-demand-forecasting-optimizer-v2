@@ -1,66 +1,50 @@
-project:
-  name: regional-demand-forecasting-optimizer-v2
-  repo_type: clean rebuild
-  active_repo_path: /content/regional-demand-forecasting-optimizer-v2
-  active_phase: "Phase 0 — Setup / continuity / core utilities"
-  active_block: "Bootstrap system + prompt system"
+current_session_date: "2026-04-18"
+current_phase: "Day 2 — Forecasting pipeline + first tree model"
+current_focus: "Weekly region-level forecasting pipeline after SKU-region sparsity diagnosis"
 
-last_session:
-  date: "2026-04-17"
-  summary: >
-    Created fresh V2 repo scaffold from scratch, initialized git, committed initial
-    structure, added reusable git workflow thinking, and started setting up prompt
-    continuity + session organization.
-  accomplishments:
-    - "Built professional folder structure"
-    - "Initialized git and completed first commit"
-    - "Created continuity prompts"
-    - "Started planning startup/bootstrap workflow"
-  blockers:
-    - "Repo/data continuity still needs automation"
-    - "Processed dataset not yet wired cleanly into V2"
-    - "Core src modules still placeholders"
-  next_goal: >
-    Build continuity files and startup checks, then populate the first core modules
-    and connect data cleanly.
+working:
+  - "repo continuity in Colab"
+  - "processed weekly dataset loading"
+  - "schema validation"
+  - "preprocessing scaffold"
+  - "basic evaluation metrics"
+  - "SKU-region sparsity diagnosed explicitly"
+  - "weekly region aggregation pipeline"
+  - "time-based train/validation split"
+  - "LightGBM region-week baseline"
+  - "validation predictions saved"
+  - "benchmark outputs saved"
 
-current_state:
-  current_notebook: "Colab setup / continuity session"
-  current_script: "src/utils/session_bootstrap.py"
-  current_data_location: "To be linked from old repo or Google Drive"
-  current_priority: "Continuity system + project bootstrap"
-  baseline_best_model: "XGBoost"
-  baseline_best_wmape: 0.1106
+blocked:
+  - "current dataset is not forecastable at SKU-region time-series grain"
+  - "historical XGBoost benchmark not yet revalidated on current V2 weekly data"
+  - "CatBoost not yet attempted"
+  - "uncertainty and inventory layers still pending"
 
-validated_baselines:
-  xgboost_wmape: 0.1106
-  prophet_wmape: 0.1116
-  ma7_wmape: 0.1925
-  roll_14_importance: 0.4682
-
-known_issues:
-  - "West region performs worse than other regions"
-  - "Beauty category has high variability"
-  - "Current safety stock logic likely over-flags urgency"
-  - "No uncertainty quantification yet"
-  - "Need to migrate validated baseline work into V2 cleanly"
-
-next_priorities:
-  - "Create session bootstrap utility"
-  - "Create core utility modules (metrics, loader, validation)"
-  - "Connect processed feature dataset"
-  - "Start LightGBM benchmark"
-  - "Add CatBoost after LightGBM"
-
-recent_files_touched:
-  - "README.md"
-  - "requirements.txt"
-  - ".gitignore"
-  - "docs/prompts/continuity_prompt_compact.md"
-  - "docs/prompts/coding_session_prompt.md"
+files_touched:
+  - "docs/current_status.yaml"
   - "docs/session_log.md"
+  - "reports/project_build_journal.md"
+  - "outputs/predictions/day2_region_week_lgbm_predictions.csv"
+  - "outputs/benchmarks/day2_region_week_benchmarks.csv"
 
-session_defaults:
-  environment: "Google Colab"
-  working_repo: "regional-demand-forecasting-optimizer-v2"
-  preferred_style: "practical, human, production-aware"
+current_data_location: "/content/regional-demand-forecasting-optimizer-v2/data/processed/weekly_demand_aggregated.csv"
+current_notebook_or_script: "Colab Day 2 forecasting pivot session"
+
+latest_metrics:
+  xgboost_wmape: 11.06
+  lightgbm_wmape: 0.183125
+  catboost_wmape: null
+  ma7_wmape: 19.25
+  weekly_naive_lag1_wmape: 0.181579
+
+latest_inventory_snapshot:
+  safety_stock_value: 157292.60
+  annual_storage_cost: 21370.33
+  replenishment_needed: 780850.78
+  high_urgency_combos: 41
+  avg_days_of_supply: 6.3
+  critical_stockout_risk_combos: 0
+
+next_immediate_goal: "Use the region-week LightGBM pipeline as the working forecast engine and move into uncertainty + inventory linkage"
+notes: "Day 2 pivoted from SKU-region to weekly region-level forecasting because each SKU-region series had only one observation, making lag/rolling-based forecasting invalid at that grain."
